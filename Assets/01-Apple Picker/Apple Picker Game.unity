@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 1012286207}
   - component: {fileID: 1012286206}
   - component: {fileID: 1012286205}
+  - component: {fileID: 1012286208}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -277,8 +278,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 16
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -303,12 +304,33 @@ Transform:
   m_GameObject: {fileID: 1012286204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012286208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012286204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da2bc28119fe59448b996923426d4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applePrefab: {fileID: 3426658175932151947, guid: e644136f458f6c641a7f22193bcd1c63, type: 3}
+  speed: 1
+  leftAndRightEdge: 10
+  chanceToChangeDirections: 0.1
+  secondsBetweenAppleDrops: 1
+  basketPrefab: {fileID: 4360622532690814151, guid: 14bbb96fdf4011449bb56dc6ab61dfc0, type: 3}
+  numBaskets: 3
+  basketBottomY: -14
+  basketSpacingY: 2
 --- !u!1001 &4595979074626340804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564014692845398534, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 564014692845398534, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
       propertyPath: m_LocalPosition.z
@@ -360,6 +382,22 @@ PrefabInstance:
     - target: {fileID: 929563927152515389, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
       propertyPath: m_Name
       value: AppleTree
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587881581482795996, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
+      propertyPath: applePrefab
+      value: 
+      objectReference: {fileID: 3426658175932151947, guid: e644136f458f6c641a7f22193bcd1c63, type: 3}
+    - target: {fileID: 2587881581482795996, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
+      propertyPath: leftAndRightEdge
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587881581482795996, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
+      propertyPath: chanceToChangeDirections
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5238909387484944590, guid: 7bd97be215caba04a972cd8f9a6eb174, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
