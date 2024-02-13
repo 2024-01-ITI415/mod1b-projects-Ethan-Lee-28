@@ -12,17 +12,14 @@ public class FollowCam : MonoBehaviour {
     [Header("Set Dynamically")]
     public float camZ;
 
-    void Awake()
-    {
+    void Awake() {
         camZ = this.transform.position.z;
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
 
         Vector3 destination;
-        if (POI == null)
-        {
+        if (POI == null) {
             destination = Vector3.zero;
         }
         else
@@ -30,8 +27,7 @@ public class FollowCam : MonoBehaviour {
             
             destination = POI.transform.position;
             
-            if (POI.tag == "Projectile")
-            {
+            if (POI.tag == "Projectile") {
                 
                 if (POI.GetComponent<Rigidbody>().IsSleeping())
                 {

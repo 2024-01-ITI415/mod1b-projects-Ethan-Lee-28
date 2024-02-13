@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlingshotScript : MonoBehaviour {
+public class Slingshot : MonoBehaviour { 
+    static private Slingshot S;
     [Header("Set in Inspector")]
     public GameObject prefabProjectile;
     public float velocityMult = 8f;
@@ -15,21 +16,25 @@ public class SlingshotScript : MonoBehaviour {
 
     private Rigidbody projectileRigidbody;
 
+    static public Vector3 LAUNCH_POS {
+        get {
+            if (S == null) return Vector3.zero;
+            return S.launchPos;
+        }
+    }
     void Awake() {
+        S = this;
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
         launchPos = launchPointTrans.position;
     }
 
-    void OnMouseEnter()
-    
-    {
+    void OnMouseEnter() {
         launchPoint.SetActive(true);
     }
 
-    void OnMouseExit()
-    {
+    void OnMouseExit() {
         launchPoint.SetActive(false);
     }
 
@@ -45,12 +50,6 @@ public class SlingshotScript : MonoBehaviour {
         projectileRigidbody.isKinematic = true;
     }
 
-
-    void Start()
-    {
-        
-    }
-
     void Update() {
         if (!aimingMode) return;
 
@@ -61,8 +60,7 @@ public class SlingshotScript : MonoBehaviour {
         Vector3 mouseDelta = mousePos3D - launchPos;
         
         float maxMagnitude = this.GetComponent<SphereCollider>().radius;
-        if (mouseDelta.magnitude > maxMagnitude)
-        {
+        if (mouseDelta.magnitude > maxMagnitude) {
             mouseDelta.Normalize();
             mouseDelta *= maxMagnitude;
         }
@@ -70,13 +68,14 @@ public class SlingshotScript : MonoBehaviour {
         Vector3 projPos = launchPos + mouseDelta;
         projectile.transform.position = projPos;
         
-        if (Input.GetMouseButtonUp(0) )
-        {
+        if (Input.GetMouseButtonUp(0) ) {
             aimingMode = false;
             projectileRigidbody.isKinematic = false;
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
             FollowCam.POI = projectile;
             projectile = null;
-    }
+            MissionDemolition.ShotFired();
+            ProjectileLine.S.poi = projectile;
+        }
     }
 }
