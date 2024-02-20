@@ -7,7 +7,6 @@ public class Reset : MonoBehaviour
 {
     public float threshold = -50f;
 
-    // Update is called once per frame
     void Update()
     {
         if(transform.position.y < threshold){
